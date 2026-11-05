@@ -149,6 +149,7 @@ RUN if [ "$DISPLAY_BACKEND" = "x11" ]; then \
             'pref("browser.shell.checkDefaultBrowser", false);' \
             'pref("datareporting.policy.dataSubmissionEnabled", false);' \
             'pref("toolkit.telemetry.enabled", false);' \
+            'pref("browser.tabs.inTitlebar", 0);' \
             > /usr/lib/firefox-esr/defaults/pref/droidspaces.js && \
         chmod 0644 /usr/lib/firefox-esr/defaults/pref/droidspaces.js; \
     fi

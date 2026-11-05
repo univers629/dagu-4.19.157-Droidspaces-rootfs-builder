@@ -64,7 +64,7 @@ Mesa 不用发行版包：构建时调用 `scripts/tui/install-mesa.sh --1`，�
 | `/etc/logrotate.conf` | `maxsize 50M` | 容器长期运行时的日志上限 |
 | `/etc/tmpfiles.d/x11.conf` | `d /tmp/.X11-unix 1777 root root -`，覆盖 `D!` | 该目录是宿主 `$TMPDIR/.X11-unix` 的 bind 挂载，开机清空会删掉活着的 X5 |
 | `/etc/ssh/sshd_config` | `PermitRootLogin no`，`PasswordAuthentication yes` | 只允许 `dagu` 登录 |
-| `/usr/lib/firefox-esr/defaults/pref/droidspaces.js` | 关 `about:welcome`、首页 `about:blank`、关遥测 | 首次启动不去等 mozilla.org，直接出窗口 |
+| `/usr/lib/firefox-esr/defaults/pref/droidspaces.js` | 关 `about:welcome`、首页 `about:blank`、关遥测、用系统标题栏 | 首次启动不去等 mozilla.org；CSD 按钮在无 GTK 主题的镜像里不画图标，改回 KWin 标题栏 |
 | `/etc/passwd`、`/etc/group`、`/etc/adduser.conf` | 建 `aid_inet:3003` `aid_net_raw:3004` `aid_net_admin:3005` `droidspaces-gpu:786`，`dagu` 加入 `sudo input video tty aid_inet aid_net_raw droidspaces-gpu` | Android 侧的 AID 与 GPU 节点属组 |
 | `/etc/droidspaces` | 写入构建时间戳 | 标记解包后修复已执行 |
 | `/etc/droidspaces-kde-stack` | 记录 `stack` `plasma` `qt` `glibc` `systemd` `systemd-verified` | 排查时一眼看到装的是哪套栈 |

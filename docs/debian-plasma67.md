@@ -145,7 +145,7 @@ sed -i 's|^load-module module-suspend-on-idle|#&|' "$P"      # 切音频设备�
 
 **Docker**：trixie 自带的 `docker.io` 冻结在 26.1.5，模板改用 Docker 官方仓库（`download.docker.com/linux/debian`，trixie/arm64）装 `docker-ce` 29.9.2、`containerd.io` 2.4.2、`docker-buildx-plugin` 0.38.1、`docker-compose-plugin` 5.7.0，`update-alternatives` 仍切到 `iptables-legacy`。版本由 `DOCKER_VERSION` / `CONTAINERD_VERSION` 控制，留空装候选版本；`DOCKER_SOURCE=debian` 可退回发行版包。dockerd 以 overlay2 起得来，`docker run --rm hello-world` 实测通过；`/etc/docker/daemon.json` 预设了 `docker.m.daocloud.io` 与 `docker.1ms.run` 两个镜像源。
 
-**浏览器**：镜像只装 `firefox-esr`，并用 `/usr/lib/firefox-esr/defaults/pref/droidspaces.js` 关掉 `about:welcome`、把首页设成 `about:blank`、关掉遥测与默认浏览器询问。Chromium 不再预装：它的内容进程在这套 kgsl + Termux:X11 上要 `--disable-gpu-compositing` 才不全屏回退、要 `--autoplay-policy=no-user-gesture-required` 才不静音自动播放，参数负担重。Edge 没有 Linux/arm64 版本，`packages.microsoft.com` 的 `binary-arm64` 索引为空。
+**浏览器**：镜像只装 `firefox-esr`，并用 `/usr/lib/firefox-esr/defaults/pref/droidspaces.js` 关掉 `about:welcome`、把首页设成 `about:blank`、关掉遥测与默认浏览器询问，同时设 `browser.tabs.inTitlebar=0` 让窗口使用 KWin 标题栏——镜像不装 GTK 主题，Firefox 自带标题栏（CSD）的最小化/最大化/关闭按钮画不出符号。Chromium 不再预装：它的内容进程在这套 kgsl + Termux:X11 上要 `--disable-gpu-compositing` 才不全屏回退、要 `--autoplay-policy=no-user-gesture-required` 才不静音自动播放，参数负担重。Edge 没有 Linux/arm64 版本，`packages.microsoft.com` 的 `binary-arm64` 索引为空。
 
 ## 验证
 
